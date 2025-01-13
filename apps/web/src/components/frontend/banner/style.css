@@ -1,0 +1,7 @@
+.swiper-button-prev, .swiper-button-next {
+    color: white; /* Change color as needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional background for better visibility */
+    padding: 10px;
+    border-radius: 50%;
+  }
+  

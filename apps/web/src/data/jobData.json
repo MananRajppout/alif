@@ -1,0 +1,45 @@
+{
+  "data": {
+    "applyLink": "https://localhost.com",
+    "avatar": "https://res.cloudinary.com/js-template/image/upload/v1647869499/fo7kcvjmwabbjheb7urc.jpg",
+    "category": "IT/Telecommunication",
+    "company": {
+      "_id": "6232421d2b674a4761d4a050",
+      "companyName": "Company Name",
+      "companyTagline": "Get it done with love",
+      "companyEmail": "info@example.com",
+      "phoneNumber": "123456789",
+      "companyWebsite": "https://yourwebsite.com",
+      "socialLink": {
+        "linkedin": "undefined",
+        "facebook": "undefined",
+        "twitter": "undefined"
+      },
+      "logo": "/assets/img/avatar.png"
+    },
+    "createdAt": "2022-03-20T13:38:21.874Z",
+    "email": "info@gmail.com",
+    "hourlyrate": {
+      "minimum": 22,
+      "maximum": 22
+    },
+    "jobDescription": "Job Description",
+    "jobTitle": "developer",
+    "jobTypes": ["Full Time", "Freelance"],
+    "location": "dhaka",
+    "region": "America",
+    "salary": {
+      "minimum": 222,
+      "maximum": 222
+    },
+    "specialTags": ["HTML", "Development"],
+    "status": {
+      "isApproved": false,
+      "isPublished": true,
+      "isFeatured": false,
+      "isActive": true
+    },
+    "updatedAt": "2022-03-21T13:31:40.115Z"
+  },
+  "loading": true
+}

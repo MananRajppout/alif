@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Mark Jukerberg",
+    "position": "Position Here",
+    "date": "17 July 2022",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "user_image": "/assets/img/cs-img1.png"
+  },
+  {
+    "name": "Mark Jukerberg",
+    "position": "Position Here",
+    "date": "17 July 2022",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "user_image": "/assets/img/cs-img2.png"
+  },
+  {
+    "name": "Mark Jukerberg",
+    "position": "Position Here",
+    "date": "17 July 2022",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "user_image": "/assets/img/cs-img2.png"
+  },
+  {
+    "name": "Mark Jukerberg",
+    "position": "Position Here",
+    "date": "17 July 2022",
+    "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.",
+    "user_image": "/assets/img/cs-img2.png"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "data": {
+    "averageSalary": "1050",
+    "category": "Category Name",
+    "companyEmail": "info@exasssmple.com",
+    "companyName": "Company Name",
+    "companySize": "0-10",
+    "companyTagline": "Company Tagline",
+    "companyWebsite": "https://example.com",
+    "createdAt": "2022-03-21T07:53:03.164Z",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Learjet sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Lauds PageMaker including versions of Lorem Ipsum.",
+    "establishedDate": "17-04-19",
+    "location": "Location",
+    "locationMap": {
+      "latitude": "12345",
+      "longitude": "12345"
+    },
+    "logo": "/assets/img/avatar.png",
+    "phoneNumber": "123456789",
+    "socialLink": {
+      "linkedin": "https://linkedin/example",
+      "facebook": "https://facebook/example",
+      "twitter": "https://twitter/example"
+    },
+    "status": {
+      "isPublished": true,
+      "isApproved": false,
+      "isActive": true
+    },
+    "thumb": "/assets/img/findjob-banner-bg.svg",
+    "videoLink": "https://video-example.com",
+    "_id": "62382edf2c6ba97982654a5e"
+  },
+  "loading": true
+}

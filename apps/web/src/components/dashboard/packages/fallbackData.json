@@ -1,0 +1,109 @@
+{
+  "data": [
+    {
+      "_id": "6242b40b0592b1faf1eeae28",
+      "packageName": "Package Name",
+      "subtitle": "Our best deal",
+      "subTitleStatus": true,
+      "shortDesc": "Lorem ipsum dolor sit amen, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "pricing": 0,
+      "frequency": "Monthly",
+      "buttonText": "Get Started",
+      "services": [
+        {
+          "name": "Feature Name",
+          "details": "10",
+          "_id": "6242b95a0592b1faf1eeaf0c"
+        },
+        {
+          "name": "Feature Name",
+          "details": "24/7",
+          "_id": "6242b95a0592b1faf1eeaf0d"
+        },
+        {
+          "name": "Feature Name",
+          "details": "30",
+          "_id": "6242b95a0592b1faf1eeaf0e"
+        },
+        {
+          "name": "Feature Name",
+          "details": "1/2",
+          "_id": "6242ba440592b1faf1eeaf6d"
+        }
+      ],
+      "createdAt": "2022-03-29T07:23:55.496Z",
+      "updatedAt": "2022-03-29T07:23:55.496Z",
+      "__v": 0
+    },
+    {
+      "_id": "6242b40b0592b1faf1eeae28",
+      "packageName": "Package Name",
+      "subtitle": "Our best deal",
+      "subTitleStatus": true,
+      "shortDesc": "Lorem ipsum dolor sit amen, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "pricing": 0,
+      "frequency": "Monthly",
+      "buttonText": "Get Started",
+      "services": [
+        {
+          "name": "Feature Name",
+          "details": "10",
+          "_id": "6242b95a0592b1faf1eeaf0c"
+        },
+        {
+          "name": "Feature Name",
+          "details": "24/7",
+          "_id": "6242b95a0592b1faf1eeaf0d"
+        },
+        {
+          "name": "Feature Name",
+          "details": "30",
+          "_id": "6242b95a0592b1faf1eeaf0e"
+        },
+        {
+          "name": "Feature Name",
+          "details": "1/2",
+          "_id": "6242ba440592b1faf1eeaf6d"
+        }
+      ],
+      "createdAt": "2022-03-29T07:23:55.496Z",
+      "updatedAt": "2022-03-29T07:23:55.496Z",
+      "__v": 0
+    },
+    {
+      "_id": "6242b40b0592b1faf1eeae28",
+      "packageName": "Package Name",
+      "subtitle": "Our best deal",
+      "subTitleStatus": true,
+      "shortDesc": "Lorem ipsum dolor sit amen, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "pricing": 0,
+      "frequency": "Monthly",
+      "buttonText": "Get Started",
+      "services": [
+        {
+          "name": "Feature Name",
+          "details": "10",
+          "_id": "6242b95a0592b1faf1eeaf0c"
+        },
+        {
+          "name": "Feature Name",
+          "details": "24/7",
+          "_id": "6242b95a0592b1faf1eeaf0d"
+        },
+        {
+          "name": "Feature Name",
+          "details": "30",
+          "_id": "6242b95a0592b1faf1eeaf0e"
+        },
+        {
+          "name": "Feature Name",
+          "details": "1/2",
+          "_id": "6242ba440592b1faf1eeaf6d"
+        }
+      ],
+      "createdAt": "2022-03-29T07:23:55.496Z",
+      "updatedAt": "2022-03-29T07:23:55.496Z",
+      "__v": 0
+    }
+  ]
+}

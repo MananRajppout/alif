@@ -1,0 +1,73 @@
+{
+  "data": {
+    "education": [
+      {
+        "schoolName": "saepe sed et",
+        "qualification": "non laudantium nisi",
+        "date": "Sat Dec 25 2021 11:13:08 GMT+0600 (Bangladesh Stan…2021 07:55:31 GMT+0600 (Bangladesh Standard Time)",
+        "note": "facilis sed quia",
+        "_id": "621253b9bdd5a651f22648c9"
+      },
+      {
+        "schoolName": "velit et quia",
+        "qualification": "ut nihil asperiores",
+        "date": "Tue Jul 27 2021 06:07:07 GMT+0600 (Bangladesh Stan…2021 01:28:55 GMT+0600 (Bangladesh Standard Time)",
+        "note": "est ut id",
+        "_id": "621253b9bdd5a651f22648ca"
+      },
+      {
+        "schoolName": "consequatur voluptatem dolorem",
+        "qualification": "dolor qui dolores",
+        "date": "Sat Sep 11 2021 00:10:24 GMT+0600 (Bangladesh Stan…2021 15:17:00 GMT+0600 (Bangladesh Standard Time)",
+        "note": "autem occaecati deleniti",
+        "_id": "621253b9bdd5a651f22648cb"
+      }
+    ],
+    "email": "Mateo41@hotmail.com",
+    "experience": [
+      {
+        "emploayerName": "voluptates totam itaque",
+        "jobTitle": "facere ut reprehenderit",
+        "date": "Mon Oct 25 2021 02:27:14 GMT+0600 (Bangladesh Stan…2021 14:32:54 GMT+0600 (Bangladesh Standard Time)",
+        "note": "quia non quo",
+        "_id": "621253b9bdd5a651f22648cd"
+      },
+      {
+        "emploayerName": "odio qui dolorem",
+        "jobTitle": "minima accusantium expedita",
+        "date": "Thu Sep 02 2021 01:43:01 GMT+0600 (Bangladesh Stan…2021 04:32:12 GMT+0600 (Bangladesh Standard Time)",
+        "note": "omnis fuga rem",
+        "_id": "621253b9bdd5a651f22648ce"
+      },
+      {
+        "emploayerName": "aut neque ipsum",
+        "jobTitle": "dolorem qui consequuntur",
+        "date": "Fri Oct 08 2021 12:15:37 GMT+0600 (Bangladesh Stan…2021 17:50:45 GMT+0600 (Bangladesh Standard Time)",
+        "note": "molestiae quas voluptatem",
+        "_id": "621253b9bdd5a651f22648cf"
+      }
+    ],
+    "location": "perspiciatis commodi voluptatem",
+    "name": "Direct Mobility Technician",
+    "photo": "http://placeimg.com/640/480",
+    "professionalTitle": "Product Paradigm Planner",
+    "region": "ROI",
+    "resumeContent": "Illum soluta consectetur qui occaecati facere soluta voluptatem aut accusantium. Et aperiam ad. Ipsum rerum nesciunt ducimus doloribus et aspernatur suscipit quis. Atque in iusto incidunt est necessitatibus facere rerum nostrum modi. Inventore hic quia quod. Tenetur quis temporibus voluptate molestiae eos.",
+    "skills": ["parse", "maroon", "Brunei"],
+    "status": {
+      "isPublished": true,
+      "isApproved": false,
+      "isActive": true
+    },
+    "url": [
+      {
+        "name": "iusto expedita ut",
+        "url": "http://placeimg.com/640/480",
+        "_id": "621253b9bdd5a651f22648cc"
+      }
+    ],
+    "video": "http://placeimg.com/640/480",
+    "workingRate": 20
+  },
+  "loading": true
+}
