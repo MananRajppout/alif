@@ -129,7 +129,7 @@ const page = ({ params }: { params: { id: string } }) => {
   }, [data?.round, params.id,currentUser]);
 
 
-  console.log(data?.round.opportunity_id    ,'ooooooooooooooooooooooooooooooooooooooooooo')
+ 
 
   const handleRejectClick = useCallback(async () => {
     try {
