@@ -68,9 +68,8 @@ export async function createUser(reqQuery: any) {
     };
 
     
-    // const mailInfo = await sendNotificationEmail(inputEmailData);
-    
-    // console.log("mailInfo mail sent for confirmation", mailInfo);
+    const mailInfo = await sendNotificationEmail(inputEmailData);
+    console.log("mailInfo mail sent for confirmation", mailInfo);
     return user;
   } catch (e) {
     throw e;

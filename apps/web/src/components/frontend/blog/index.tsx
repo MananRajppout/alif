@@ -13,7 +13,7 @@ const Blog = ({ data }: { data: any }) => {
             Speakers & Companies{" "}
           </p>
           <h2 className="text-xl font-bold text-black">
-            See which companies and speakers are joining us on our next event.
+            See which companies will be joining us at our next event.
           </h2>
         </div>
 

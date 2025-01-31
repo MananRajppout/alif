@@ -1,7 +1,7 @@
 "use client";
-import { signIn } from 'next-auth/react';
+import { getSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { BsApple } from 'react-icons/bs';
 import { FaFacebook, FaGithub, FaLinkedin } from 'react-icons/fa';
@@ -11,10 +11,12 @@ import { useSWRConfig } from 'swr';
 import { ThemeContext } from '../../context/ThemeContext';
 import { FormLoader } from '../lib/loader';
 import { localGet } from '../utils/localStore';
+import { error } from 'console';
 
 const PopupLogin = () => {
   const { mutate } = useSWRConfig();
   const [loading, setLoading] = React.useState(false);
+  const [message, setMessage] = useState<null | string>(null);
   const {
     LoginPopup,
     LoginPopupHandler,
@@ -46,10 +48,27 @@ const PopupLogin = () => {
     signIn('credentials', {
       username: data.email,
       password: data.password,
-      redirect: true,
-    }).then(() => {
-      setLoading(false);
+      redirect: false,
+    }).then(async (result:any) => {
+      if (result.ok) {
+        const session = await getSession();
+        const user = session?.user as any;
+        window.location.href = '/dashbaord'
+        if(user.role.isCandidate){
+          window.location.href = '/upcoming-events'
+        }else if(user.role.isEmployer){
+           window.location.href = '/event/upcoming-events'
+        }
+      } else {
+        setMessage("Invalid Credential")
+        console.error(result.error);
+      }
+   
+    }).catch(error => {
+      setMessage("Invalid Credential");
+      console.log(error.message);
     });
+    setLoading(false);
   };
 
   const RegisterHandler = async () => {
@@ -128,7 +147,13 @@ const PopupLogin = () => {
                   </span>
                 )}
               </div>
-              <div className="flex flex-wrap items-center justify-between mb-6">
+              {
+                message && 
+                <span className="text-red-500 text-xss italic">
+                    {message}
+                  </span>
+              }
+              <div className="flex flex-wrap items-center justify-between mb-6 mt-3">
                 <div className="w-full md:w-1/2">
                   <label className="relative inline-flex items-center">
                     <input

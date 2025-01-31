@@ -46,14 +46,17 @@ export const QueProvider = ({ children }: { children: ReactNode }) => {
     }, [socketRef.current]);
 
     const handleIsMyTurn = useCallback((data: { room_id: string }) => {
-        // const confirm = window.confirm("Are You ready for interview ?");
-        // if (confirm) {
-        //     router.push(`/interview-room/${data.room_id}`);
-        //     toast.success("Now You are going to meet");
-        // }
+        if(typeof window !== 'undefined'){
+            const confirm = window.confirm("Are You ready for interview ?");
+            if (confirm) {
+                router.push(`/interview-room/${data.room_id}`);
+                toast.success("Now You are going to meet");
+            }
+        }else{
             router.push(`/interview-room/${data.room_id}`);
             toast.success("Now You are going to meet");
-
+        }
+       
     }, []);
 
 

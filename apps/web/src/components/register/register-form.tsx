@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
-import {useRouter} from "next/navigation";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { useToasts } from "@/src/components/toast/toast";
 import { Axios } from "../utils/axiosKits";
@@ -86,6 +86,29 @@ const RegisterForm = () => {
     }
   };
 
+
+  const validatePassword = useCallback((value: string) => {
+    const minLengthCheck = value.length >= 8;
+    const upperCaseCheck = /[A-Z]/.test(value);
+    const numberCheck = /[0-9]/.test(value);
+    const specialCharCheck = /[@$!%*?&]/.test(value);
+
+    if (!minLengthCheck) {
+      return "Password must be at least 8 characters";
+    }
+    if (!upperCaseCheck) {
+      return "Password must contain at least one uppercase letter";
+    }
+    if (!numberCheck) {
+      return "Password must contain at least one number";
+    }
+    if (!specialCharCheck) {
+      return "Password must contain at least one special character (@$!%*?&)";
+    }
+    return true;
+  }, [])
+
+
   return (
     <div className="max-w-md mx-auto shadow px-8 py-10 rounded-lg bg-white ">
       <div className="mb-6 text-center">
@@ -134,9 +157,8 @@ const RegisterForm = () => {
                 First Name
               </label>
               <input
-                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                  errors?.first_name ? "!border-red-500" : "border-gray"
-                } rounded-lg placeholder-coolGray-400 focus:outline-none `}
+                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.first_name ? "!border-red-500" : "border-gray"
+                  } rounded-lg placeholder-coolGray-400 focus:outline-none `}
                 type="name"
                 {...register("first_name", { required: true })}
                 placeholder="Enter Your First Name"
@@ -152,9 +174,8 @@ const RegisterForm = () => {
                 Last Name
               </label>
               <input
-                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                  errors?.last_name ? "!border-red-500" : "border-gray"
-                } rounded-lg placeholder-coolGray-400 focus:outline-none `}
+                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.last_name ? "!border-red-500" : "border-gray"
+                  } rounded-lg placeholder-coolGray-400 focus:outline-none `}
                 type="name"
                 {...register("last_name", { required: true })}
                 placeholder="Enter Your Last Name"
@@ -170,10 +191,9 @@ const RegisterForm = () => {
                 Email
               </label>
               <input
-                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border rounded-lg placeholder-coolGray-400 focus:outline-none focus:ring-2 ${
-                  errors?.email ? "!border-red-500" : "border-gray"
-                } focus:ring-themePrimary focus:ring-opacity-50`}
-                type="name"
+                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border rounded-lg placeholder-coolGray-400 focus:outline-none focus:ring-2 ${errors?.email ? "!border-red-500" : "border-gray"
+                  } focus:ring-themePrimary focus:ring-opacity-50`}
+                type="email"
                 {...register("email", { required: true })}
                 placeholder="Enter Your Email"
               />
@@ -193,9 +213,8 @@ const RegisterForm = () => {
                 Password
               </label>
               <input
-                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                  errors?.password ? "!border-red-500" : "border-gray"
-                } rounded-lg placeholder-coolGray-400 focus:outline-none `}
+                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.password ? "!border-red-500" : "border-gray"
+                  } rounded-lg placeholder-coolGray-400 focus:outline-none `}
                 type="password"
                 {...register("password", {
                   required: {
@@ -206,6 +225,7 @@ const RegisterForm = () => {
                     value: 8,
                     message: "Password must be at least 8 characters",
                   },
+                  validate: validatePassword
                 })}
                 placeholder="Enter Password"
               />
@@ -221,9 +241,8 @@ const RegisterForm = () => {
                 Confirm Password
               </label>
               <input
-                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                  errors?.confirm_password ? "!border-red-500" : "border-gray"
-                } rounded-lg placeholder-coolGray-400 focus:outline-none `}
+                className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.confirm_password ? "!border-red-500" : "border-gray"
+                  } rounded-lg placeholder-coolGray-400 focus:outline-none `}
                 type="password"
                 {...register("confirm_password", {
                   required: {

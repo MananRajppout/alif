@@ -20,15 +20,15 @@ export const Menu = [
     name: "Home",
     link: "/",
   },
-  {
-    name: "Live Connect",
-    link: "/live-connect",
-    subMenu: [
-      { name: "CareerConnect/JobMeet", link: "/live-connect/career-connect" },
-      { name: "Classroom", link: "/live-connect/classroom" },
-      { name: "eConference", link: "/live-connect/econference" },
-    ],
-  },
+  // {
+  //   name: "Live Connect",
+  //   link: "/live-connect",
+  //   subMenu: [
+  //     { name: "CareerConnect/JobMeet", link: "/live-connect/career-connect" },
+  //     { name: "Classroom", link: "/live-connect/classroom" },
+  //     { name: "eConference", link: "/live-connect/econference" },
+  //   ],
+  // },
   {
     name: "Company",
     link: "/company",
@@ -38,7 +38,7 @@ export const Menu = [
     link: "/candidate",
   },
   {
-    name: "Career Advice",
+    name: "How it works",
     link: "/career-advice",
   },
   {

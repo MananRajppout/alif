@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useToasts } from "../toast/toast";
 import { ThemeContext } from "../../context/ThemeContext";
@@ -11,6 +11,7 @@ const PopupRegister = () => {
     React.useContext(ThemeContext) as any;
   const [CurrentPage, setCurrentPage] = React.useState(1);
   const { addToast } = useToasts();
+  const [error, setError] = useState(null);
 
   const {
     register,
@@ -66,6 +67,7 @@ const PopupRegister = () => {
             }
           });
         } catch (error: any) {
+          setError(error.response.data.message)
           addToast(error.response.data.message, {
             appearance: "error",
             autoDismiss: true,
@@ -89,21 +91,46 @@ const PopupRegister = () => {
     }, 300);
   };
 
+
+
+  const validatePassword = (value: string) => {
+    const minLengthCheck = value.length >= 8;
+    const upperCaseCheck = /[A-Z]/.test(value);
+    const numberCheck = /[0-9]/.test(value);
+    const specialCharCheck = /[@$!%*?&]/.test(value);
+
+    if (!minLengthCheck) {
+      return "Password must be at least 8 characters";
+    }
+    if (!upperCaseCheck) {
+      return "Password must contain at least one uppercase letter";
+    }
+    if (!numberCheck) {
+      return "Password must contain at least one number";
+    }
+    if (!specialCharCheck) {
+      return "Password must contain at least one special character (@$!%*?&)";
+    }
+    return true;
+  };
+
+
+
+
+
   return (
     // Popup Register Wrapper
     <section
-      className={`fixed w-full h-full top-0 left-0 bg-[rgba(0,_0,_0,_0.7)] z-[9999] text-white transition-all duration-300 ease-in-out  ${
-        RegisterPopup ? "opacity-100 visible" : "opacity-0 invisible"
-      }`}
+      className={`fixed w-full h-full top-0 left-0 bg-[rgba(0,_0,_0,_0.7)] z-[9999] text-white transition-all duration-300 ease-in-out  ${RegisterPopup ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
     >
       <div className="flex justify-center items-center w-full h-screen">
         {/* Register Form */}
         <div
-          className={`relative z-[2] max-w-[550px] w-full max-h-[650px] overflow-auto my-0 mx-auto bg-white rounded-[5px] shadow-[0_0_10px_rgba(0,_0,_,_0.2)] transition-all duration-300 ease-in-out ${
-            RegisterPopup
+          className={`relative z-[2] max-w-[550px] w-full max-h-[650px] overflow-auto my-0 mx-auto bg-white rounded-[5px] shadow-[0_0_10px_rgba(0,_0,_,_0.2)] transition-all duration-300 ease-in-out ${RegisterPopup
               ? "transform scale-100 opacity-100 visible"
               : "transform scale-[0.7] opacity-0 invisible"
-          }`}
+            }`}
         >
           {/* Register Form Title */}
           <div className="flex justify-between items-center py-5 px-10 border-b border-b-[#ebebeb]">
@@ -166,9 +193,8 @@ const PopupRegister = () => {
                       First Name
                     </label>
                     <input
-                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                        errors?.first_name ? "!border-red-500" : "border-gray"
-                      } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
+                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.first_name ? "!border-red-500" : "border-gray"
+                        } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
                       type="name"
                       {...register("first_name", {
                         required: true,
@@ -186,9 +212,8 @@ const PopupRegister = () => {
                       Last Name
                     </label>
                     <input
-                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                        errors?.last_name ? "!border-red-500" : "border-gray"
-                      } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
+                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.last_name ? "!border-red-500" : "border-gray"
+                        } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
                       type="name"
                       {...register("last_name", {
                         required: true,
@@ -206,12 +231,11 @@ const PopupRegister = () => {
                       Email
                     </label>
                     <input
-                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border rounded-lg placeholder-themeLight text-themeLight focus:outline-none focus:ring-2 ${
-                        errors?.email ? "!border-red-500" : "border-gray"
-                      } focus:ring-themePrimary focus:ring-opacity-50`}
-                      type="name"
+                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border rounded-lg placeholder-themeLight text-themeLight focus:outline-none focus:ring-2 ${errors?.email ? "!border-red-500" : "border-gray"
+                        } focus:ring-themePrimary focus:ring-opacity-50`}
+                      type="email"
                       {...register("email", {
-                        required: true,
+                        required: { value: true, message: "This field is required" }
                       })}
                       placeholder="Enter Your Email"
                     />
@@ -231,15 +255,15 @@ const PopupRegister = () => {
                       Password
                     </label>
                     <input
-                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                        errors?.password ? "!border-red-500" : "border-gray"
-                      } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
+                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.password ? "!border-red-500" : "border-gray"
+                        } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
                       type="password"
                       {...register("password", {
                         required: {
                           value: true,
                           message: "This field is required",
                         },
+                        validate: validatePassword
                       })}
                       placeholder="Enter Password"
                     />
@@ -255,11 +279,10 @@ const PopupRegister = () => {
                       Confirm Password
                     </label>
                     <input
-                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${
-                        errors?.confirm_password
+                      className={`appearance-none block w-full !p-3 leading-5 text-coolGray-900 border ${errors?.confirm_password
                           ? "!border-red-500"
                           : "border-gray"
-                      } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
+                        } rounded-lg placeholder-themeLight text-themeLight focus:outline-none `}
                       type="password"
                       {...register("confirm_password", {
                         required: {
@@ -281,8 +304,15 @@ const PopupRegister = () => {
                   </div>
                 </>
               )}
+              {
+              error &&
+              <span className="text-red-600 text-xss italic">
+                {/* @ts-ignore */}
+                {error}
+              </span>
+            }
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 mt-5">
                 {CurrentPage === 2 && (
                   <button
                     onClick={previousHandler}
@@ -295,9 +325,8 @@ const PopupRegister = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`flex gap-2 justify-center items-center !py-3 px-7 mb-6 w-full duration-300 ease-in-out text-base text-white font-normal text-center leading-6 ${
-                    isSubmitting ? "bg-themeDarkerAlt" : "bg-themePrimary"
-                  } rounded-md hover:bg-black`}
+                  className={`flex gap-2 justify-center items-center !py-3 px-7 mb-6 w-full duration-300 ease-in-out text-base text-white font-normal text-center leading-6 ${isSubmitting ? "bg-themeDarkerAlt" : "bg-themePrimary"
+                    } rounded-md hover:bg-black`}
                 >
                   {CurrentPage === 1 ? (
                     "Next"
@@ -310,6 +339,7 @@ const PopupRegister = () => {
                 </button>
               </div>
             </form>
+            
             <p className="text-center">
               <span className="text-xss1 text-deep">
                 Already have an account?

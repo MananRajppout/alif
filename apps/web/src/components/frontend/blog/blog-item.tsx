@@ -29,15 +29,15 @@ const BlogItem = ({ data }: { data: any }) => {
           {data?.title}
         </a>
       </Link>
-      <div className="mb-6">
+      {/* <div className="mb-6">
         <p className="text-xs text-deep font-normal leading-6">
           {data?.excerpt}
         </p>
-      </div>
+      </div> */}
       <div className="blog-btn">
         <Link legacyBehavior href={`/blog/${data?.slug}`}>
           <a className="inline-flex gap-3 items-center  py-2.5 px-6 bg-light rounded-md group-hover:!bg-themePrimary leading-4 text-deep transition-all text-xxs group-hover:!text-white">
-            Read More
+            View Company
             <FiArrowRight className="text-lg" />
           </a>
         </Link>

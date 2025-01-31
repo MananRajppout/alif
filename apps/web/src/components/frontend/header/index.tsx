@@ -131,7 +131,7 @@ const Header = ({ IsLogIn }: { IsLogIn: any }) => {
                             {!userData?.avatar && (
                               <Image
                                 className="rounded-full object-cover object-right p-1 border border-solid border-gray-500"
-                                src="https://via.placeholder.com/75x75"
+                                src={`https://ui-avatars.com/api/?name=${userData?.fullName?.firstName}+${userData?.fullName?.lastName}&size=300&background=random`}
                                 alt="User image"
                                 width={48}
                                 height={48}
@@ -140,7 +140,7 @@ const Header = ({ IsLogIn }: { IsLogIn: any }) => {
                             )}
                           </div>
                           <div>
-                            <p className="text-sm leading-8">
+                            <p className="text-sm leading-8 capitalize">
                               {userData?.fullName?.firstName}{" "}
                               {userData?.fullName?.lastName}
                             </p>
@@ -284,12 +284,10 @@ const Header = ({ IsLogIn }: { IsLogIn: any }) => {
                       {!userData?.avatar && (
                         <Image
                           className="rounded-lg object-cover object-right p-1 border border-solid border-gray-500"
-                          src="https://via.placeholder.com/75x75"
+                          src={`https://ui-avatars.com/api/?name=${userData?.fullName?.firstName}+${userData?.fullName?.lastName}&size=300&background=random`}
                           alt="User image"
                           width={40}
                           height={40}
-                          placeholder="blur"
-                          blurDataURL={"https://via.placeholder.com/75x75"}
                           quality={75}
                           priority={true}
                         />

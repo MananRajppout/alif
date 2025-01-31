@@ -11,6 +11,8 @@ import {
 } from "../service/event.service";
 import { uploadImageToCloudinary } from "../utils/cloudinary";
 import UserModel from "../models/user.model";
+import { sendTakeInterviewInvitaionMail } from "../utils/nodeMailer";
+import { generateMail } from "@/utils/generateEmail";
 
 export async function getEventsPrivate(accessToken: string) {
   try {
@@ -159,7 +161,7 @@ export async function registerOnEvent(
     event.opportunities.push(opportunity._id);
     await event.save();
 
-    //send email to user pending
+
     const updatedOpportunity = await OpportunityModel.findById(opportunity._id).populate({
       path: 'rounds',
       select: 'rooms name description roundType index opportunity_id event_id',
@@ -169,6 +171,34 @@ export async function registerOnEvent(
       },
     })
       .exec();
+
+    // Send emails in parallel (doesn't block the response)
+    const emailPromises = updatedOpportunity.rounds.flatMap((round:any) =>
+      round.rooms.map((room:any) =>
+        sendTakeInterviewInvitaionMail(
+          room.interviewerEmail,
+          `Interview Invitation for ${updatedOpportunity.name}`,
+          generateMail(`Dear ${room.interviewerName},
+
+            You have been invited to conduct an interview for the opportunity: [Opportunity Name].
+
+            Interview Details:
+            Event Date: ${new Date(event.date).toDateString()}
+            Round: ${round.name}
+            Room Link: ${process.env.endPointFrontend}/interview-room/${room._id}?accessToken=${room.acccessToken}
+            Please make sure to join the room on time to conduct the interview. If you face any issues or have questions, feel free to reach out to us.
+
+            Thank you for your time, and we look forward to your participation!`)
+        )
+      )
+    );
+    // Wait for all email promises to resolve
+    Promise.all(emailPromises).then(() => {
+      console.log("Emails sent successfully");
+    }).catch(err => {
+      console.error("Error sending emails:", err);
+    });
+
     return updatedOpportunity;
   } catch (e) {
     throw e;
@@ -201,6 +231,31 @@ export async function registerOnOppotunity(
 
 
     await opportunity.save();
+
+
+    //send mail to user
+    const user = await UserModel.findById(userId);
+    const subject = "Interview Registration Successful";
+    const html = `
+      Dear ${user?.fullName?.firstName} ${user?.fullName?.lastName},
+
+      Congratulations! You have successfully registered for an interview with us. We’re excited to take the next steps in the hiring process with you.
+
+      Next Steps:
+      Stay Online: Please stay online on the website to be available for your scheduled interview. You will be notified when it is your turn to join.
+      Keep Your Session Active: Make sure your session remains active and that you don't leave the page during the interview process.
+      Notifications: You will receive real-time notifications on the website when it’s your turn for the interview. If, for any reason, you don't receive the notification here, we'll also send you an email with the necessary details.
+      Please ensure you are ready and online at your scheduled time. If you have any questions or need further assistance, feel free to reach out to us.
+
+      We look forward to meeting with you!
+
+      Best regards,
+    `
+    const email = user.email;
+    await sendTakeInterviewInvitaionMail(subject, generateMail(html), email);
+
+
+
     return opportunity;
   } catch (e) {
     throw e;
@@ -220,19 +275,19 @@ export async function getOpportunities(event_id: string, accessToken: string) {
     const opportunities = await OpportunityModel.find({ event_id, user: userId }).populate({
       path: 'rounds',
       select: 'rooms name description roundType index opportunity_id event_id',
-      populate: 
-        {
-          path: 'rooms',
-          select: 'interviewerName interviewerEmail accessToken',
-        }
+      populate:
+      {
+        path: 'rooms',
+        select: 'interviewerName interviewerEmail accessToken',
+      }
     }).populate({
       path: 'participants',
       select: 'status',
-      populate: 
-        {
-          path: 'user',
-          select: 'email fullName avatar',
-        }
+      populate:
+      {
+        path: 'user',
+        select: 'email fullName avatar',
+      }
     })
       .exec();
     return opportunities;
@@ -256,31 +311,31 @@ export async function getMyAllOpportunities(accessToken: string) {
     const opportunities = await OpportunityModel.find({ user: userId }).populate({
       path: 'rounds',
       select: 'rooms name description roundType index opportunity_id event_id',
-      populate: 
-        {
-          path: 'rooms',
-          select: 'interviewerName interviewerEmail accessToken',
-        }
+      populate:
+      {
+        path: 'rooms',
+        select: 'interviewerName interviewerEmail accessToken',
+      }
     }).populate({
       path: 'participants',
       select: 'status',
-      populate: 
-        {
-          path: 'user',
-          select: 'email fullName avatar',
-        }
+      populate:
+      {
+        path: 'user',
+        select: 'email fullName avatar',
+      }
     }).populate('event_id')
-    .sort({ createdAt: -1 })
-    .limit(5)  
-    .exec();
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .exec();
 
     let participants = [];
     for (let opportunity of opportunities) {
       participants.push(...opportunity.participants);  // Concatenate participants into the array
     }
-    
 
-    return {opportunities,participants};
+
+    return { opportunities, participants };
   } catch (e) {
     throw e;
   }
@@ -289,11 +344,11 @@ export async function getMyAllOpportunities(accessToken: string) {
 
 export async function getEmployers() {
   try {
-    const employerCount = await UserModel.find({'role.isEmployer': true}).countDocuments();
+    const employerCount = await UserModel.find({ 'role.isEmployer': true }).countDocuments();
     const activeEvent = await EventModel.findOne().sort({ createdAt: -1 });
     const activeEmployerCount = activeEvent.opportunities.length;
     const inActiveEmployeCount = Number(employerCount || 0) - Number(activeEmployerCount || 0);
-    return {inActiveEmployeCount,employerCount,activeEmployerCount};
+    return { inActiveEmployeCount, employerCount, activeEmployerCount };
   } catch (e) {
     throw e;
   }
@@ -305,11 +360,11 @@ export async function getLatestEvent() {
     const event = await EventModel.findOne().sort({ createdAt: -1 }).populate({
       path: 'opportunities',
       select: 'participants name role rounds',
-      populate: 
-        {
-          path: 'user',
-          select: 'fullName',
-        }
+      populate:
+      {
+        path: 'user',
+        select: 'fullName',
+      }
     });
 
     return event

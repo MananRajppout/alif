@@ -9,10 +9,11 @@ interface IProps {
     onFail: () => void;
     isPassDisabled: boolean;
     queCount: number;
+    setFeedBackOpen: (value:boolean) => void;
 
 }
 
-const RoomSidebar:FC<IProps> = ({isPassDisabled,onNext,onPass,queCount,onFail}) => {
+const RoomSidebar:FC<IProps> = ({isPassDisabled,onNext,onPass,queCount,onFail,setFeedBackOpen}) => {
     const [expend,setExpend] = useState(false);
   return (
     <div className='fixed text-white'>
@@ -27,8 +28,9 @@ const RoomSidebar:FC<IProps> = ({isPassDisabled,onNext,onPass,queCount,onFail}) 
 
             <div className='flex flex-col gap-2'>
                 <button className={`py-2 px-4 rounded-md bg-themePrimary text-center font-medium text-md uppercase disabled:opacity-40`} onClick={onNext} disabled={!isPassDisabled}>Next</button>
-                <button className={`py-2 px-4 rounded-md bg-green-500 text-center font-medium text-md uppercase disabled:opacity-40`} disabled={isPassDisabled} onClick={onPass}>Pass</button>
-                <button className={`py-2 px-4 rounded-md bg-red-500 text-center font-medium text-md uppercase disabled:opacity-40`} disabled={isPassDisabled} onClick={onFail}>Fail</button>
+                {/* <button className={`py-2 px-4 rounded-md bg-green-500 text-center font-medium text-md uppercase disabled:opacity-40`} disabled={isPassDisabled} onClick={onPass}>Pass</button>
+                <button className={`py-2 px-4 rounded-md bg-red-500 text-center font-medium text-md uppercase disabled:opacity-40`} disabled={isPassDisabled} onClick={onFail}>Fail</button> */}
+                <button className={`py-2 px-4 rounded-md bg-red-500 text-center font-medium text-md uppercase disabled:opacity-40`} disabled={isPassDisabled} onClick={() => setFeedBackOpen(true)}>View Feedback</button>
             </div>
         </aside>
     </div>

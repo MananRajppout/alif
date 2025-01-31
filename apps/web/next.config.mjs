@@ -8,7 +8,8 @@ const nextConfig = {
       "placeimg.com",
       "placehold.co",
       "via.placeholder.com",
-      "lh3.googleusercontent.com"
+      "lh3.googleusercontent.com",
+      "ui-avatars.com"
       // 'via.placeholder.com',
     ],
   },

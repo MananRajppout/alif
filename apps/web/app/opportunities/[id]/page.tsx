@@ -33,6 +33,11 @@ export default function Page({ params }: { params: { id: string } }) {
             toast.error("please login first");
             return;
         }
+        if(!user.role.isCandidate){
+            toast.error("As a Employer you cannot apply for interview.");
+            return;
+        }
+        
         setLoading(true);
         try {
             const formdata = {

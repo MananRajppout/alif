@@ -8,6 +8,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { JitsiMeeting } from "@jitsi/react-sdk"
 import useSWR from 'swr';
 import RoomSidebar from '@/ui/header/room-sidebar';
+import InterviewFeedbackModal from '@/src/components/interview/live-interview-feedback';
 
 const fetcher = (url: string) => authAxios(url).then((res) => res.data.data);
 const page = ({ params }: { params: { id: string } }) => {
@@ -22,6 +23,7 @@ const page = ({ params }: { params: { id: string } }) => {
   const [currentUserId, setCurrentUserId] = useState<undefined | string>(undefined);
   const [queCount,setQueCount] = useState(-1);
   const [isJoined, setIsJoined] = useState(false);
+  const [feedbackOpen,setFeedBackOpen] = useState(false);
 
  
   const { data, error } = useSWR(`/events/get-round-by-room-id/${params.id}`, fetcher);
@@ -158,8 +160,8 @@ const page = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      {isJoined && token && <RoomSidebar onNext={handleNextClick} onPass={handlePassClick} onFail={handleRejectClick} isPassDisabled={!(currentUser && currentUser?.isEmpty == false)} queCount={queCount}/>}
-      
+      {isJoined && token && <RoomSidebar setFeedBackOpen={setFeedBackOpen} onNext={handleNextClick} onPass={handlePassClick} onFail={handleRejectClick} isPassDisabled={!(currentUser && currentUser?.isEmpty == false)} queCount={queCount}/>}
+      <InterviewFeedbackModal open={feedbackOpen} onReject={handleRejectClick} onPass={handlePassClick} onClose={() => setFeedBackOpen(false)}/>
       <div style={{ height: "100vh", display: 'grid', flexDirection: "column" }}>
         <JitsiMeeting
           domain={YOUR_DOMAIN}

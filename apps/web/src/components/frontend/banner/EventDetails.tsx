@@ -20,7 +20,7 @@ const EventCard = ({nearestEvent}:{
   return (
     <div className="bg-white p-6 rounded-lg  grid grid-cols-2 gap-12">
       <div className="pl-16 ">
-        <h1 className="bg-gradient-to-r from-purple-700 to-pink-500 text-transparent bg-clip-text text-3xl ">
+        <h1 className="bg-gradient-to-r from-purple-700 to-pink-500 text-transparent bg-clip-text text-[18px] uppercase ">
             About Event
         </h1>
         <h2 className="text-5xl font-bold text-gray-800 mt-4">
@@ -54,12 +54,12 @@ const EventCard = ({nearestEvent}:{
             )}
         </ul>
       </div>
-      <div>
+      <div className="flex items-center justify-center relative">
 
       <img
-        src={nearestEvent.displayImage}
+        src={nearestEvent.coverImage}
         alt={nearestEvent.eventName}
-        className="rounded-full w-70 h-130 mb-4"
+        className="rounded-md w-[100%] mb-4"
         />
         </div>
     </div>

@@ -161,14 +161,14 @@ export default function Home() {
               <EventCard nearestEvent={nearestEvent} />
             </div>
           )}
-          <FeatureSelection />
+           <PopularJobsData jobs={jobs} />
+          {/* <FeatureSelection /> */}
           <Blog data={blogsData} />
-          <CategoryData
+          {/* <CategoryData
             categoryData={categoryData}
             categoryError={categoryError}
-          />
-          <PopularJobsData jobs={jobs} />
-          <Testimonials data={testimonialsData} />
+          /> */}
+          {/* <Testimonials data={testimonialsData} /> */}
         </main>
       </Layout>
     </>

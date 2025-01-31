@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { FaChair, FaUser , FaLocationArrow  } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 
 function formatDateWithMonthMap(dateString: string): string {
   const monthMap: { [key: number]: string } = {
@@ -156,26 +158,30 @@ export default function EventsBanner() {
                     variants={childVariants}
                     className="flex flex-col md:flex-row items-center justify-center gap-4 mb-6"
                   >
-                    <p className="text-lg md:text-xl text-white">
-                      <span className="mr-2">
-                        🎤 {currentEvent.speakers} Speakers
+                     <p className="text-[18px] uppercase text-white">
+                      <span className="mr-2 flex items-center gap-1">
+                      <span className="text-yellow-500 mb-1"><FaChair /></span>
+                        {currentEvent.numberOfSeats} Seats
                       </span>
                     </p>
-                    <p className="text-lg md:text-xl text-white">
-                      <span>
-                        📍 {currentEvent.city}, {currentEvent.state}
+
+                    <p className="text-[18px] uppercase text-white">
+                      <span className="mr-2 flex items-center gap-1">
+                        <span className="text-yellow-500 mb-1"><FaUser /></span>
+                         {currentEvent.speakers} Speakers
                       </span>
                     </p>
+                    <p className="text-[18px] uppercase text-white">
+                      <span className="mr-2 flex items-center gap-1">
+                      <span className="text-yellow-500 mb-1"><FaLocationDot /></span>
+                        {currentEvent.city}, {currentEvent.state}
+                      </span>
+                    </p>
+                   
                   </motion.div>
-                  <motion.p
-                    variants={childVariants}
-                    className="text-lg md:text-xl mb-8 text-white"
-                  >
-                    🪑 {currentEvent.numberOfSeats} Seats Available
-                  </motion.p>
                   <motion.button
                     variants={childVariants}
-                    className="bg-yellow-500 hover:bg-yellow-600 px-8 py-3 rounded-full text-black font-semibold text-lg transition-colors duration-300"
+                    className="bg-yellow-500 hover:bg-yellow-600 px-8 py-3 rounded-lg text-white font-normal text-md transition-colors duration-300"
                     onClick={() => handleBookNow(currentEvent._id)}
                   >
                     Book Now

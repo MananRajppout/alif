@@ -1,5 +1,5 @@
 "use client"
-import { signIn, useSession } from 'next-auth/react';
+import { getSession, signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,9 +9,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { useToasts } from '@/src/components/toast/toast';
 import { ThemeContext } from '@/src/context/ThemeContext'; // Adjusted import path
 import { FormLoader } from '@/src/components/lib/loader'; // Adjusted import path
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
   const { lostPasswordHandler } = useContext(ThemeContext);
+  const [message, setMessage] = useState<null | string>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { data, status } = useSession();
   const {
@@ -21,7 +23,7 @@ const LoginForm = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  
+
   const { addToast } = useToasts();
 
   const onSubmitHandler = async (data: any) => {
@@ -29,17 +31,34 @@ const LoginForm = () => {
     signIn('credentials', {
       username: data.email,
       password: data.password,
-      redirect: true,
-    }).then(() => {
+      redirect: false,
+    }).then(async (result: any) => {
       setIsLoading(false);
+      if (result.ok) {
+        const session = await getSession();
+        const user = session?.user as any;
+        window.location.href = '/dashbaord'
+        if (user.role.isCandidate) {
+          window.location.href = '/upcoming-events'
+        } else if (user.role.isEmployer) {
+          window.location.href = '/event/upcoming-events'
+        }
+      } else {
+        setMessage("Invalid Credential")
+        console.error(result.error);
+      }
     }).catch((error) => {
       setIsLoading(false);
+      setMessage("Invalid Credential")
       addToast(error.message || 'Login failed', {
         appearance: 'error',
         autoDismiss: true,
       });
     });
   };
+
+
+
 
   return (
     <div className="max-w-md mx-auto shadow px-8 sm:px-6 py-10 rounded-lg bg-white pb-12 h-3/4">
@@ -81,7 +100,13 @@ const LoginForm = () => {
             </span>
           )}
         </div>
-        <div className="flex flex-wrap items-center justify-between mb-6">
+        {
+          message &&
+          <span className="text-red-500 text-xss italic">
+            {message}
+          </span>
+        }
+        <div className="flex flex-wrap items-center justify-between mb-6 mt-3">
           <div className="w-full md:w-1/2">
             <label className="relative inline-flex items-center">
               <input className="checked:bg-red-500 w-4 h-4" {...register('remember')} type="checkbox" />

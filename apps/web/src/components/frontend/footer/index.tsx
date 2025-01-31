@@ -87,11 +87,7 @@ const Footer = () => {
                 className="text-xxs font-normal leading-6 mb-6"
                 style={{ color: "rgba(255, 255, 255, 0.7)" }}
               >
-                Lorem Ipsum is simply dummy text of the{" "}
-                <br className="hidden xl:inline" /> printing and typesetting
-                industry. Lorem <br className="hidden xl:inline" /> Ipsum has
-                been the industrys standard <br className="hidden xl:inline" />{" "}
-                dummy text
+                Our company is a job portal where companies post jobs and candidates apply. What makes us unique is our <span className="font-body text-white static">weekly hiring events</span>, where companies directly connect and hire talent.
               </p>
               <div className="text-xxs text-white font-normal leading-6 mb-6 flex gap-4 items-center">
                 <LocationIcon className="text-themePrimary" />
